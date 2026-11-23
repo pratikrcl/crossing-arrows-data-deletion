@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Account &amp; Data Deletion — Crossing Arrows</title>
+  <meta name="description" content="Step-by-step account and data deletion instructions for the Crossing Arrows Android game." />
+  <style>
+    :root {
+      --bg: #0b1123;
+      --surface: #131c36;
+      --surface-alt: #192444;
+      --border: rgba(148, 163, 184, 0.22);
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.14);
+      --danger: #f87171;
+      --danger-soft: rgba(248, 113, 113, 0.14);
+      --success: #34d399;
+      --success-soft: rgba(52, 211, 153, 0.14);
+      --radius: 18px;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f8fafc;
+        --surface: #ffffff;
+        --surface-alt: #f1f5f9;
+        --border: rgba(15, 23, 42, 0.12);
+        --text: #0f172a;
+        --muted: #475569;
+        --accent: #0284c7;
+        --accent-soft: rgba(2, 132, 199, 0.1);
+        --danger: #dc2626;
+        --danger-soft: rgba(220, 38, 38, 0.1);
+        --success: #059669;
+        --success-soft: rgba(5, 150, 105, 0.1);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.68;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 40px 20px 72px;
+    }
+
+    header.hero {
+      background: linear-gradient(135deg, var(--surface) 0%, var(--surface-alt) 100%);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px 28px;
+      margin-bottom: 24px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--danger-soft);
+      color: var(--danger);
+    }
+
+    .badge.blue {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .badge.green {
+      background: var(--success-soft);
+      color: var(--success);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.75rem, 3.8vw, 2.3rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+      gap: 12px;
+      margin-top: 22px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .meta-item span {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+    }
+
+    .meta-item strong {
+      font-size: 0.92rem;
+      word-break: break-word;
+    }
+
+    section.card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 26px;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 1.2rem;
+      color: var(--accent);
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      margin: 16px 0 8px;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    p:last-child, ul:last-child, ol:last-child {
+      margin-bottom: 0;
+    }
+
+    ul, ol {
+      margin: 0 0 14px;
+      padding-left: 22px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .cta-box {
+      background: var(--danger-soft);
+      border: 1px solid rgba(248, 113, 113, 0.35);
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 14px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 12px 20px;
+      border-radius: 12px;
+      background: var(--accent);
+      color: #0b1123;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+    }
+
+    .cta-btn:hover {
+      opacity: 0.92;
+      text-decoration: none;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .status-del {
+      color: var(--danger);
+      font-weight: 700;
+    }
+
+    .status-note {
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    .email-template {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.86rem;
+      white-space: pre-wrap;
+      margin-top: 10px;
+      color: var(--text);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 32px;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <div class="badge-row">
+        <span class="badge">Data Deletion</span>
+        <span class="badge blue">Crossing Arrows</span>
+        <span class="badge green">Completed Within 30 Days</span>
+      </div>
+      <h1>Account &amp; Data Deletion Instructions</h1>
+      <p class="subtitle">
+        How to permanently delete your <strong>Crossing Arrows</strong> account, cloud-synced progress, or local device data.
+      </p>
+      <div class="meta-grid">
+        <div class="meta-item">
+          <span>App Name</span>
+          <strong>Crossing Arrows</strong>
+        </div>
+        <div class="meta-item">
+          <span>Package ID</span>
+          <strong>com.aistudio.arrowflow.mzkpqw</strong>
+        </div>
+        <div class="meta-item">
+          <span>Last Updated</span>
+          <strong>November 23, 2026</strong>
+        </div>
+        <div class="meta-item">
+          <span>Support Email</span>
+          <strong><a href="mailto:pratikrandhir888@gmail.com">pratikrandhir888@gmail.com</a></strong>
+        </div>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2>1. Request Permanent Account &amp; Cloud Data Deletion</h2>
+      <p>
+        If you signed in to <strong>Crossing Arrows</strong> using Google Sign-In, you can request permanent deletion of your Firebase Authentication account and all associated cloud-synced gameplay data by following these steps:
+      </p>
+      <ol>
+        <li>Send an email from the Google account email address you used in Crossing Arrows to <a href="mailto:pratikrandhir888@gmail.com">pratikrandhir888@gmail.com</a>.</li>
+        <li>Use the subject line: <strong>Crossing Arrows — Account &amp; Data Deletion Request</strong>.</li>
+        <li>Include your signed-in Google email address (and optional display name shown in the app) so we can locate and verify your account.</li>
+        <li>We will verify your request, permanently delete your account and cloud records, and send a confirmation email within <strong>30 days</strong>.</li>
+      </ol>
+
+      <div class="cta-box">
+        <strong>Submit a Deletion Request by Email</strong>
+        <p style="margin-top: 6px;">Click the button below to open your email app with a pre-filled deletion request:</p>
+        <a class="cta-btn" href="mailto:pratikrandhir888@gmail.com?subject=Crossing%20Arrows%20%E2%80%94%20Account%20%26%20Data%20Deletion%20Request&amp;body=Hello%20Crossing%20Arrows%20Support%2C%0A%0APlease%20permanently%20delete%20my%20Crossing%20Arrows%20account%20and%20all%20associated%20cloud%20data.%0A%0ASigned-in%20Google%20Email%3A%20%5BEnter%20your%20email%20here%5D%0AApp%20Name%3A%20Crossing%20Arrows%20(com.aistudio.arrowflow.mzkpqw)%0A%0AThank%20you.">
+          Request Account Deletion via Email
+        </a>
+        <div class="email-template">To: pratikrandhir888@gmail.com
+Subject: Crossing Arrows — Account &amp; Data Deletion Request
+
+Hello Crossing Arrows Support,
+Please permanently delete my Crossing Arrows account and all associated cloud data.
+Signed-in Google Email: [Your Google Email]</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>2. Delete Gameplay Progress Directly Inside the App (No Account Deletion Required)</h2>
+      <p>
+        If you only want to erase your puzzle progress, stars, and daily streaks without deleting your Google Sign-In link:
+      </p>
+      <ol>
+        <li>Open <strong>Crossing Arrows</strong> on your Android device.</li>
+        <li>Tap the <strong>Settings</strong> (gear) icon in the top-right corner of the Home screen.</li>
+        <li>Tap <strong>Reset Progress</strong> and confirm.</li>
+      </ol>
+      <p>
+        This immediately erases your completed stages, star counts, and daily challenge streaks on your device (and resets your synced cloud progress if signed in).
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>3. Delete Local Guest Mode Data &amp; Ad Identifiers</h2>
+      <ul>
+        <li><strong>Guest Mode Players (No Sign-In):</strong> Crossing Arrows stores guest progress exclusively on your device. No account or personal data is stored on our servers. To delete all local data, either use <em>Settings &rarr; Reset Progress</em> in the app, clear app storage under <em>Android Settings &rarr; Apps &rarr; Crossing Arrows &rarr; Storage &amp; cache &rarr; Clear storage</em>, or uninstall the app.</li>
+        <li><strong>Google AdMob Advertising ID:</strong> To delete or reset your device Advertising ID or opt out of personalized ads, go to <em>Android Settings &rarr; Google &rarr; Ads</em> on your device.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>4. What Data Is Deleted vs. Retained</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Data Type</th>
+              <th>Action on Deletion Request</th>
+              <th>Timeframe</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Firebase Authentication Account</strong><br />User ID (UID), email address, display name</td>
+              <td><span class="status-del">Permanently deleted</span></td>
+              <td>Within 30 days</td>
+            </tr>
+            <tr>
+              <td><strong>Cloud Firestore Game Progress</strong><br />Unlocked levels, completed stages, stars, mistakes, hints, daily streaks, saved settings</td>
+              <td><span class="status-del">Permanently deleted</span></td>
+              <td>Within 30 days</td>
+            </tr>
+            <tr>
+              <td><strong>Local Device Storage (DataStore)</strong><br />Guest progress, unfinished board state, local preferences</td>
+              <td><span class="status-del">Deleted immediately</span> when you reset progress, clear storage, or uninstall</td>
+              <td>Immediate</td>
+            </tr>
+            <tr>
+              <td><strong>Infrastructure Security Logs / AdMob Data</strong><br />Automated Google Cloud security logs or device ad data</td>
+              <td><span class="status-note">Not stored by us</span>; governed by Google Firebase &amp; AdMob standard retention/opt-out controls</td>
+              <td>Per Google policies</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>5. Questions &amp; Privacy Policy</h2>
+      <p>
+        For full details on how Crossing Arrows handles user data, please read our <a href="./privacy-policy.html">Privacy Policy</a>.
+      </p>
+      <p>
+        If you need assistance with a deletion request, contact us anytime at <a href="mailto:pratikrandhir888@gmail.com">pratikrandhir888@gmail.com</a>.
+      </p>
+    </section>
+
+    <footer>
+      &copy; 2026 Crossing Arrows. All rights reserved.
+    </footer>
+  </main>
+</body>
+</html>
